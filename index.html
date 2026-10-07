@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff4f8">
+  <title>Uma pergunta especial 💗</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --pink: #f36f9c;
+      --pink-dark: #d94d80;
+      --ink: #583b4b;
+      --paper: #fffdfd;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 24px;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 18%, #ffe0eb 0 7%, transparent 7.3%),
+        radial-gradient(ellipse at 90% 80%, #ffe6ef 0 9%, transparent 9.3%),
+        linear-gradient(145deg, #fff7fa, #ffedf4);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    .sparkle {
+      position: fixed;
+      z-index: -1;
+      color: #ee91b1;
+      font-size: clamp(18px, 3vw, 30px);
+      animation: float 4s ease-in-out infinite;
+      user-select: none;
+    }
+    .sparkle:nth-child(1) { top: 12%; left: 15%; }
+    .sparkle:nth-child(2) { top: 20%; right: 18%; animation-delay: -1s; }
+    .sparkle:nth-child(3) { bottom: 16%; left: 20%; animation-delay: -2s; }
+    .sparkle:nth-child(4) { right: 12%; bottom: 22%; animation-delay: -.5s; }
+
+    .card {
+      width: min(100%, 540px);
+      padding: clamp(30px, 7vw, 58px) 24px 42px;
+      border: 2px solid #ffd3e1;
+      border-radius: 34px;
+      background: rgba(255, 253, 253, .94);
+      box-shadow: 0 20px 60px #d96d921c, 0 5px 16px #d96d9210;
+      text-align: center;
+    }
+
+    .kitty {
+      position: relative;
+      display: grid;
+      width: 116px;
+      height: 100px;
+      margin: 0 auto 25px;
+      place-items: center;
+      border: 3px solid #583b4b;
+      border-radius: 48% 48% 45% 45%;
+      background: white;
+      box-shadow: inset 0 -7px #fff0f5;
+    }
+    .kitty::before, .kitty::after {
+      position: absolute;
+      top: -10px;
+      z-index: -1;
+      width: 40px;
+      height: 42px;
+      border: 3px solid #583b4b;
+      background: white;
+      content: "";
+      transform: rotate(35deg);
+    }
+    .kitty::before { left: 4px; border-radius: 8px 24px 4px 12px; }
+    .kitty::after { right: 4px; border-radius: 24px 8px 12px 4px; transform: rotate(-35deg); }
+    .face {
+      position: relative;
+      width: 66px;
+      height: 25px;
+      margin-top: 10px;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse, #583b4b 0 3px, transparent 3.5px) 5px 3px / 12px 12px no-repeat,
+        radial-gradient(ellipse, #583b4b 0 3px, transparent 3.5px) 49px 3px / 12px 12px no-repeat,
+        radial-gradient(ellipse, #f3ae36 0 3px, transparent 3.5px) center 9px / 12px 12px no-repeat,
+        radial-gradient(ellipse, #f3a4ba 0 7px, transparent 7.5px) -4px 11px / 18px 12px no-repeat,
+        radial-gradient(ellipse, #f3a4ba 0 7px, transparent 7.5px) 52px 11px / 18px 12px no-repeat;
+    }
+    .bow {
+      position: absolute;
+      top: -16px;
+      right: 5px;
+      width: 34px;
+      height: 26px;
+      transform: rotate(14deg);
+    }
+    .bow::before, .bow::after {
+      position: absolute;
+      top: 2px;
+      width: 19px;
+      height: 19px;
+      border: 2px solid #c94472;
+      background: #f36f9c;
+      content: "";
+    }
+    .bow::before { left: 0; border-radius: 80% 30% 60% 35%; transform: rotate(-20deg); }
+    .bow::after { right: 0; border-radius: 30% 80% 35% 60%; transform: rotate(20deg); }
+    .bow span {
+      position: absolute;
+      z-index: 1;
+      top: 9px;
+      left: 13px;
+      width: 9px;
+      height: 9px;
+      border: 2px solid #c94472;
+      border-radius: 50%;
+      background: #ffd0df;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--pink-dark);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      color: #583b4b;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 8vw, 3.3rem);
+      line-height: 1.13;
+    }
+    .subtitle {
+      margin: 15px 0 30px;
+      color: #927482;
+      font-size: 1.02rem;
+    }
+
+    .buttons {
+      position: relative;
+      display: flex;
+      min-height: 54px;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+    }
+    button {
+      min-width: 126px;
+      min-height: 50px;
+      padding: 12px 25px;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    button:focus-visible { outline: 3px solid #b84975; outline-offset: 4px; }
+    .yes {
+      color: white;
+      background: var(--pink);
+      box-shadow: 0 6px 0 #d95b89;
+    }
+    .yes:hover { background: var(--pink-dark); transform: translateY(-2px); }
+    .no {
+      color: #87586e;
+      border: 1px solid #f5cada;
+      background: #fff4f8;
+    }
+    .no:hover { background: #ffe6ef; }
+    .hint { margin: 24px 0 0; color: #b18d9d; font-size: .8rem; }
+
+    .overlay {
+      position: fixed;
+      z-index: 5;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: #583b4bbd;
+      animation: fade-in .25s ease both;
+    }
+    .overlay[hidden] { display: none; }
+    .dialog {
+      position: relative;
+      width: min(100%, 440px);
+      overflow: hidden;
+      padding: 48px 28px 38px;
+      border: 3px solid white;
+      border-radius: 32px;
+      background: #fff8fb;
+      box-shadow: 0 24px 80px #33162255;
+      text-align: center;
+      animation: pop-in .45s cubic-bezier(.2, 1.5, .5, 1) both;
+    }
+    .dialog h2 {
+      margin: 0 0 12px;
+      color: var(--pink-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+    .dialog p { margin: 0 0 24px; color: #805e6d; line-height: 1.6; }
+    .close {
+      color: white;
+      background: var(--pink);
+    }
+    .confetti {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .confetti span {
+      position: absolute;
+      top: -40px;
+      left: var(--x);
+      color: var(--color);
+      font-size: var(--size);
+      animation: fall var(--duration) var(--delay) linear infinite;
+    }
+    @keyframes float { 50% { transform: translateY(-9px) rotate(8deg); } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pop-in { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+    @keyframes fall {
+      to { transform: translate3d(20px, 500px, 0) rotate(360deg); opacity: 0; }
+    }
+    @media (max-width: 420px) {
+      .buttons { gap: 10px; }
+      button { min-width: 112px; padding-inline: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <span class="sparkle" aria-hidden="true">✦</span>
+  <span class="sparkle" aria-hidden="true">♡</span>
+  <span class="sparkle" aria-hidden="true">✧</span>
+  <span class="sparkle" aria-hidden="true">♡</span>
+
+  <main class="card">
+    <div class="kitty" aria-hidden="true"><div class="bow"><span></span></div><div class="face"></div></div>
+    <p class="eyebrow">Tenho uma perguntinha...</p>
+    <h1>QUER NAMORAR<br>COMIGO?</h1>
+    <p class="subtitle">Prometo muitos momentos fofos! 💌</p>
+    <div class="buttons">
+      <button class="yes" type="button">Sim! 💖</button>
+      <button class="no" type="button">Não 🙈</button>
+    </div>
+    <p class="hint">Escolha com carinho ✨</p>
+  </main>
+
+  <div class="overlay" role="presentation" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="answer-title" aria-describedby="answer-copy">
+      <div class="confetti" aria-hidden="true"></div>
+      <div style="position:relative">
+        <div aria-hidden="true" style="font-size:3rem;margin-bottom:10px">💖🎉💐</div>
+        <h2 id="answer-title">Ebaaa! 💕</h2>
+        <p id="answer-copy">Você acabou de deixar meu coração muuuito feliz!<br>Esse é o começo de algo lindo! 🥰</p>
+        <button class="close" type="button">Oba! 💗</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const yesButton = document.querySelector(".yes");
+    const noButton = document.querySelector(".no");
+    const overlay = document.querySelector(".overlay");
+    const closeButton = document.querySelector(".close");
+    const confetti = document.querySelector(".confetti");
+    let previousFocus;
+
+    function celebrate() {
+      previousFocus = document.activeElement;
+      overlay.hidden = false;
+      closeButton.focus();
+    }
+
+    function closeCelebration() {
+      overlay.hidden = true;
+      previousFocus?.focus();
+    }
+
+    function createConfetti() {
+      const symbols = ["♥", "✦", "✿", "♡", "✨"];
+      const colors = ["#f36f9c", "#f7c94b", "#b58ada", "#ff9a78"];
+      confetti.replaceChildren();
+      for (let i = 0; i < 34; i += 1) {
+        const piece = document.createElement("span");
+        piece.textContent = symbols[i % symbols.length];
+        piece.style.setProperty("--x", `${Math.random() * 100}%`);
+        piece.style.setProperty("--color", colors[i % colors.length]);
+        piece.style.setProperty("--size", `${14 + Math.random() * 17}px`);
+        piece.style.setProperty("--duration", `${2.5 + Math.random() * 2.5}s`);
+        piece.style.setProperty("--delay", `${Math.random() * 2}s`);
+        confetti.append(piece);
+      }
+    }
+
+    function moveNoButton() {
+      const margin = 12;
+      const bounds = noButton.getBoundingClientRect();
+      const maxX = Math.max(margin, window.innerWidth - bounds.width - margin);
+      const maxY = Math.max(margin, window.innerHeight - bounds.height - margin);
+      noButton.style.position = "fixed";
+      noButton.style.left = `${margin + Math.random() * (maxX - margin)}px`;
+      noButton.style.top = `${margin + Math.random() * (maxY - margin)}px`;
+    }
+
+    yesButton.addEventListener("click", () => {
+      createConfetti();
+      celebrate();
+    });
+    noButton.addEventListener("pointerenter", moveNoButton);
+    noButton.addEventListener("focus", moveNoButton);
+    noButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      moveNoButton();
+    });
+    closeButton.addEventListener("click", closeCelebration);
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) closeCelebration();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !overlay.hidden) closeCelebration();
+    });
+  </script>
+</body>
+</html>
